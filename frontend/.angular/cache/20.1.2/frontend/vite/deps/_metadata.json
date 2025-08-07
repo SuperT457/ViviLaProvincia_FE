@@ -1,46 +1,58 @@
 {
-  "hash": "6010e474",
-  "configHash": "b228cd8f",
+  "hash": "92c84192",
+  "configHash": "1ad504ea",
   "lockfileHash": "76f1d887",
-  "browserHash": "3cc3a0ab",
+  "browserHash": "20606c0c",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "145afe71",
+      "fileHash": "85dcc2a4",
+      "needsInterop": false
+    },
+    "@angular/common/http": {
+      "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
+      "file": "@angular_common_http.js",
+      "fileHash": "5186c432",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "5b90b025",
+      "fileHash": "9cfa1f65",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "9882caa2",
+      "fileHash": "6580e657",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "e4013099",
+      "fileHash": "0d2a5540",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "3eeb59e0",
+      "fileHash": "b0896451",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-NWKFIKHK": {
-      "file": "chunk-NWKFIKHK.js"
+    "chunk-C44WMLSV": {
+      "file": "chunk-C44WMLSV.js"
     },
-    "chunk-JRIDCKPM": {
-      "file": "chunk-JRIDCKPM.js"
+    "chunk-SBY3GNTP": {
+      "file": "chunk-SBY3GNTP.js"
+    },
+    "chunk-VM47VJGP": {
+      "file": "chunk-VM47VJGP.js"
+    },
+    "chunk-NHOE2POT": {
+      "file": "chunk-NHOE2POT.js"
     },
     "chunk-7LGT2SP3": {
       "file": "chunk-7LGT2SP3.js"
