@@ -5,3 +5,8 @@ export interface Utente{
     mail: string,
     ruolo: string
 }
+
+export interface UserLogin{
+	username: string,
+	password: string
+}

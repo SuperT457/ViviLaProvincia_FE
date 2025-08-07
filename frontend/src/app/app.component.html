@@ -6,14 +6,6 @@
     </head>
     <body>
 
-    <div *ngIf="loggedUser?.ruolo==='organizzatore'; else utenteBase">
-      Ciao organizzatore!
-    </div>
-
-    <ng-template #utenteBase>
-      sei un utente base
-    </ng-template>
-
     <!-- Navbar in alto -->
     <nav *ngIf="loggedUser">
       <ul style="list-style: none; display: flex; gap: 20px; padding: 0;">

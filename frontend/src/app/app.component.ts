@@ -24,10 +24,10 @@ export class AppComponent implements OnInit{
     this.updateUser();
     console.log(this.loggedUser);
     if(this.loggedUser){
-      //this.router.navigate(['/eventi']);
+      this.router.navigate(['/eventi']);
       console.log("Utente loggato");
     }else{
-      //this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
       console.log("utente NON LOGGATO");
     }
   }

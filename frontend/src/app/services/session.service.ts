@@ -11,7 +11,7 @@ export class SessionService{
 
     getLoggedUser() : Utente | null{
         const raw = localStorage.getItem('utente');
-        return this.dummyUser
+        return raw ? JSON.parse(raw) as Utente : null;
     }
 
     setLoggedUser(user:Utente): void{
