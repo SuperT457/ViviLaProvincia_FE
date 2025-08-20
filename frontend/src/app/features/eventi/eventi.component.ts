@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Eventi } from '../../models/eventi.model';
+import { Evento } from '../../models/evento.model';
 
 @Component({
   selector: 'app-eventi',
@@ -7,14 +7,18 @@ import { Eventi } from '../../models/eventi.model';
   styleUrls: ['./eventi.component.css']
 })
 export class EventiComponent {
-  eventi: Eventi[] = [];
+  eventi: Evento[] = [];
 
-  nuovoEvento: Eventi = {
+  nuovoEvento: Evento = {
     id: 0,
     titolo: '',
-    data: '',
+    dataOra: new Date() ,
     luogo: '',
-    descrizione: ''
+    descrizione: '',
+    costo: 0,
+    n_posti: 0,
+    organizzatore: '',
+    categoria:'',
   };
 
  
