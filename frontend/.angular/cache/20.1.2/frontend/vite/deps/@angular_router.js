@@ -1,6 +1,7 @@
 import {
   Title
-} from "./chunk-VWKJYYZX.js";
+} from "./chunk-5SWIM7HN.js";
+import "./chunk-ALFVIJQR.js";
 import {
   HashLocationStrategy,
   LOCATION_INITIALIZED,
@@ -9,7 +10,6 @@ import {
   PathLocationStrategy,
   ViewportScroller
 } from "./chunk-JAH7JRKJ.js";
-import "./chunk-ALFVIJQR.js";
 import "./chunk-636JCMZ5.js";
 import {
   APP_BOOTSTRAP_LISTENER,
