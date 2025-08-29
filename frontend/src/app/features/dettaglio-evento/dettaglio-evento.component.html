@@ -1,0 +1,14 @@
+<div *ngIf="loading" class="loading">Caricamento evento...</div>
+
+<div *ngIf="!loading && evento" class="evento-container">
+  <div class="evento-card">
+    <h1>{{ evento.titolo }}</h1>
+    <p><strong>Luogo:</strong> {{ evento.luogo }}</p>
+    <p><strong>Data e Ora:</strong> {{ evento.dataOra | date:'fullDate' }} - {{ evento.dataOra | date:'shortTime' }}</p>
+    <p><strong>Prezzo:</strong> {{ evento.costo | currency:'EUR' }}</p>
+
+    <div *ngIf="evento.costo < 20" class="sconto">🎉 Sconto speciale disponibile!</div>
+
+    <button class="btn-acquista" (click)="acquistaBiglietto()">Acquista Biglietto</button>
+  </div>
+</div>
