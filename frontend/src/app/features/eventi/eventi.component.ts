@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Evento } from '../../models/evento.model';
 import { EventoService } from '../../services/evento.service';
+import { RouterLink } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-eventi',
+  imports: [RouterLink, CurrencyPipe, DatePipe, CommonModule],
   templateUrl: './eventi.component.html',
   styleUrls: ['./eventi.component.css']
 })

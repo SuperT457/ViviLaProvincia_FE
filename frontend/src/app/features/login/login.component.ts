@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'; // aggiungi questa importazione
 import { UtenteService } from '../../services/user.service';
@@ -12,7 +12,7 @@ import { Utente } from '../../models/user.model';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule], // aggiungi ReactiveFormsModule
+  imports: [CommonModule, FormsModule, ReactiveFormsModule], // aggiungi ReactiveFormsModule
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
