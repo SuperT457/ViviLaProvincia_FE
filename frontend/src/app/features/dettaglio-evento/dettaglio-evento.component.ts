@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventoService } from '../../services/evento.service';
 import { Evento } from '../../models/evento.model';
-import { CurrencyPipe } from '@angular/common';
-import { DatePipe } from '@angular/common';
+//import { CurrencyPipe } from '@angular/common';
+//import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dettaglio-evento',
   templateUrl: './dettaglio-evento.component.html',
-  imports: [CurrencyPipe, DatePipe, CommonModule],
+  imports: [CommonModule],
   styleUrls: ['./dettaglio-evento.component.css']
 })
 export class DettaglioEventoComponent implements OnInit {

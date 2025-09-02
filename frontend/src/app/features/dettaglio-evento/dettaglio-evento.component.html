@@ -4,7 +4,7 @@
   <div class="evento-card">
     <h1>{{ evento.titolo }}</h1>
     <p><strong>Luogo:</strong> {{ evento.luogo }}</p>
-    <p><strong>Data e Ora:</strong> {{ evento.dataOra | date:'fullDate' }} - {{ evento.dataOra | date:'shortTime' }}</p>
+    <p><strong>Data e Ora:</strong> {{ evento.dataora | date:'fullDate' }} - {{ evento.dataora | date:'shortTime' }}</p>
     <p><strong>Prezzo:</strong> {{ evento.costo | currency:'EUR' }}</p>
 
     <div *ngIf="evento.costo < 20" class="sconto">🎉 Sconto speciale disponibile!</div>

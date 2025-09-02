@@ -11,7 +11,7 @@
         placeholder="Inserisci il tuo username"
       />
       <div class="error" *ngIf="username.invalid && username.touched">
-        Lo username è obbligatorio (min 3 caratteri).
+        Lo username è obbligatorio.
       </div>
     </div>
 
@@ -24,11 +24,16 @@
         placeholder="Inserisci la tua password"
       />
       <div class="error" *ngIf="password.invalid && password.touched">
-        La password è obbligatoria (min 8 caratteri).
+        La password è obbligatoria.
       </div>
       
     </div>
 
     <button type="submit" [disabled]="loginForm.invalid">Accedi</button>
   </form>
+  
+  <div class="login-error" *ngIf="loginError != ''">
+      {{ loginError }}
+  </div>
+
 </div>

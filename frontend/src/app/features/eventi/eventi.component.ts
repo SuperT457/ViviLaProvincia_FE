@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-eventi',
+  standalone: true,
   imports: [RouterLink, CurrencyPipe, DatePipe, CommonModule],
   templateUrl: './eventi.component.html',
   styleUrls: ['./eventi.component.css']
@@ -19,10 +20,17 @@ export class EventiComponent implements OnInit {
   constructor(private eventoService: EventoService) {}
 
   ngOnInit(): void {
-    // Recupera eventi dal backend
+    this.loadEventi();
+  }
+
+  loadEventi(): void{
     this.eventoService.getEventi().subscribe({
       next: (data) => {
         this.eventi = data;
+        console.log("Ho trovato questi eventi: ");
+        for (let e of this.eventi) {
+          console.log(e);
+        }
         this.loading = false;
       },
       error: (err) => {
@@ -30,11 +38,5 @@ export class EventiComponent implements OnInit {
         this.loading = false;
       }
     });
-
-    // Per test senza backend, puoi usare dati fittizi
-    // this.eventi = [
-    //   { id: 1, titolo: 'Concerto Demo', dataOra: new Date(), luogo: 'Arena', costo: 15, n_posti: 100, organizzatore: 'Band Demo', categoria: 'Musica', descrizione: 'Descrizione demo' },
-    //   { id: 2, titolo: 'Concerto Demo 2', dataOra: new Date(), luogo: 'Palazzetto', costo: 20, n_posti: 80, organizzatore: 'Band 2', categoria: 'Rock', descrizione: 'Descrizione demo 2' }
-    // ];
   }
 }

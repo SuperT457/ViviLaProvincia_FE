@@ -47,7 +47,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
-.error {
+.error, .login-error {
   color: #e74c3c;
   font-size: 0.875rem;
   margin-top: 0.3rem;

@@ -7,18 +7,12 @@
         <h2>I prossimi concerti</h2>
 
         <!-- Mostra caricamento se eventi non ancora disponibili -->
-        <div *ngIf="eventi.length === 0">Caricamento concerti...</div>
+        <div *ngIf="eventi.length === 0">Caricamento eventi...</div>
 
         <!-- Lista dinamica eventi -->
         <ul>
             <li *ngFor="let evento of eventi">
-                <h3>
-                    {{ evento.titolo }}: <span class="band">{{ evento.organizzatore }}</span>
-                </h3>
-                <p><strong>Data:</strong> {{ evento.dataOra | date:'dd MMMM yyyy' }}</p>
-                <p><strong>Luogo:</strong> {{ evento.luogo }}</p>
-                <p><strong>Orario:</strong> {{ evento.dataOra | date:'HH:mm' }}</p>
-                <p><strong>Prezzo:</strong> {{ evento.costo | currency:'EUR' }}</p>
+                {{ evento.id }}
 
                 <!-- Link al dettaglio evento -->
                 <a [routerLink]="['/eventi', evento.id]" class="btn-dettaglio">Vedi Dettagli</a>

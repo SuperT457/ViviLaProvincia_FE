@@ -8,27 +8,31 @@ import { UtenteService } from '../../services/user.service';
 import { AppComponent } from '../../app.component';
 import { SessionService } from '../../services/session.service';
 import { Utente } from '../../models/user.model';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule], // aggiungi ReactiveFormsModule
+  imports: [CommonModule, FormsModule, ReactiveFormsModule], 
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   loginForm: FormGroup;
   loggedUser: Utente | null = null
+  loginError: string = '';
 
   constructor(private fb: FormBuilder, 
     private utenteService: UtenteService, 
     private appComponent: AppComponent, 
     private sessionService: SessionService,
-    private router: Router) {
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {
     
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(3)]]
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
@@ -55,10 +59,15 @@ export class LoginComponent {
           this.appComponent.updateUser();
           this.router.navigate(['/']);
         },
-        error: (err) => { console.error('Login failed',err);}
+        error: (err) => { 
+          console.error('Login failed',err);
+          this.loginError = 'Login fallito. Controlla le tue credenziali.';
+          this.cdr.detectChanges(); // Forza il rilevamento delle modifiche
+        }
       })
     } else {
       this.loginForm.markAllAsTouched();
     }
   }
+
 }
