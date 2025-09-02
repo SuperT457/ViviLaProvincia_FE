@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-eventi',
@@ -17,7 +18,10 @@ export class EventiComponent implements OnInit {
   eventi: Evento[] = [];
   loading: boolean = true;
 
-  constructor(private eventoService: EventoService) {}
+  constructor(
+    private eventoService: EventoService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.loadEventi();
@@ -32,6 +36,7 @@ export class EventiComponent implements OnInit {
           console.log(e);
         }
         this.loading = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Errore caricamento eventi', err);

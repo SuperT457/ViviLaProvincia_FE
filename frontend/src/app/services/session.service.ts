@@ -6,7 +6,7 @@ export class SessionService{
     dummyUser: Utente = {
         username: 'jwebw',
         mail: 'mail@mail',
-        ruolo: 'utente'
+        ruolo: 'u'
     }
 
     getLoggedUser() : Utente | null{

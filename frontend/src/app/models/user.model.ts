@@ -1,9 +1,8 @@
 export interface Utente{
     id?: number; 
     username: string;
-    password?: string;
     mail: string,
-    ruolo: string
+    ruolo: 'u' | 'o'; // u = utente, o = organizzatore
 }
 
 export interface UserLogin{
