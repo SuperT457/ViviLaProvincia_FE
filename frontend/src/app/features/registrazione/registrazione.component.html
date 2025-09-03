@@ -1,0 +1,36 @@
+<div class="register-container">
+  <h2>Registrati</h2>
+
+  <form [formGroup]="RegisterForm" (ngSubmit)="onSubmit()">
+    
+    <label>Username</label>
+    <input type="text" formControlName="fullname" placeholder="Mario Rossi" />
+    
+    <label>Email</label>
+    <input type="email" formControlName="email" placeholder="email@esempio.com" />
+
+    <label>Password</label>
+    <div class="password-wrapper">
+      <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password" />
+      <span class="toggle-password" (click)="togglePassword('password')">
+        {{ showPassword ? '🔓' : '🔒' }}
+      </span>
+    </div>
+
+    <label>Conferma Password</label>
+    <div class="password-wrapper">
+      <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Ripeti password" />
+      <span class="toggle-password" (click)="togglePassword('confirmPassword')">
+        {{ showConfirmPassword ? '🔓' : '🔒' }}
+      </span>
+    </div>
+
+    <button type="submit">Crea Account</button>
+  </form>
+
+ <p class="login-link">
+  Hai già un account?
+  <a href="#" (click)="goToRegister($event)">Login</a>
+</p>
+
+</div>

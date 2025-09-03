@@ -12,5 +12,7 @@ export class UtenteService{
     login(username:string, password:string): Observable<Utente>{
 	    return this.http.post<Utente>(`${this.baseUrl}/login`, {username,password});
     }
-    
+    register(username:string, password:string, email: string): Observable<Utente>{
+	    return this.http.post<Utente>(`${this.baseUrl}/login`, {username,password, email});
+    }
 }

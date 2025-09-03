@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -11,16 +12,18 @@ import { Utente } from '../../models/user.model';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-registrazione',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule], 
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './registrazione.component.html',
+  styleUrls: ['./registrazione.component.css']
 })
-export class LoginComponent {
-  loginForm: FormGroup;
-  loggedUser: Utente | null = null
-  loginError: string = '';
+export class RegisterComponent {
+  RegisterForm: FormGroup;
+  registerUser: Utente | null = null
+  registerError: string = '';
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
 
   constructor(private fb: FormBuilder, 
     private utenteService: UtenteService, 
@@ -30,50 +33,71 @@ export class LoginComponent {
     private cdr: ChangeDetectorRef
   ) {
     
-    this.loginForm = this.fb.group({
+    this.RegisterForm = this.fb.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      email: ['', [Validators.required]]
     });
   }
 
   get password() {
-    return this.loginForm.get('password')!;
+    return this.RegisterForm.get('password')!;
   }
 
   get username() {
-    return this.loginForm.get('username')!;
+    return this.RegisterForm.get('username')!;
+  }
+  get email() {
+    return this.RegisterForm.get('email')!;
   }
 
- goToRegister(event: Event) {
+  
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+  togglePassword(field: string) {
+    if (field === 'password') {
+      this.showPassword = !this.showPassword;
+    } else if (field === 'confirmPassword') {
+      this.showConfirmPassword = !this.showConfirmPassword;
+    }
+  }
+
+  goToRegister(event: Event) {
   event.preventDefault(); // evita il comportamento predefinito del link
-  this.router.navigate(['/register']);
+  this.router.navigate(['/login']);
 }
 
-
   onSubmit() {
-    if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
+    if (this.RegisterForm.valid) {
+      const { username, password ,email} = this.RegisterForm.value;
       // Qui puoi gestire il login, chiamare un servizio, ecc.
-      console.log('Username:', username);
-      console.log('Password:', password);
+    console.log('Username:', username);
+    console.log('Password:', password);
+    console.log('Email:', email);
+      
       
       this.utenteService.login(username,password).subscribe({
         next: (utente) => {
-          console.log('Login successful', utente);
+          console.log('Registrazione corretta', utente);
           this.sessionService.setLoggedUser(utente);
-          this.loggedUser = this.sessionService.getLoggedUser();
+          this.registerUser = this.sessionService.getLoggedUser();
           this.appComponent.updateUser();
           this.router.navigate(['/']);
         },
         error: (err) => { 
-          console.error('Login failed',err);
-          this.loginError = 'Login fallito. Controlla le tue credenziali.';
+          console.error('Problemi con la registrazione',err);
+          this.registerError = 'Registro fallito. Controlla le credenziali.';
           this.cdr.detectChanges(); // Forza il rilevamento delle modifiche
         }
       })
     } else {
-      this.loginForm.markAllAsTouched();
+      this.RegisterForm.markAllAsTouched();
     }
   }
 
 }
+
+
+
