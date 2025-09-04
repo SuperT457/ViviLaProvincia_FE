@@ -11,4 +11,5 @@ export interface Evento {
   n_posti: number;
   organizzatore: Utente;  // più avanti puoi sostituire con un model Organizzatore
   categoria: Categoria;      // idem, puoi sostituire con model Categoria
+  image_url?: String;
 }

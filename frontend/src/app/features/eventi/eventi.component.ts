@@ -48,4 +48,8 @@ export class EventiComponent implements OnInit {
       }
     });
   }
+
+  getImageUrl(evento: Evento): string{
+    return `http://localhost:8080${evento.image_url}`;
+  }
 }

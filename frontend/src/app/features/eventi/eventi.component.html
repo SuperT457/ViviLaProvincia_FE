@@ -12,10 +12,10 @@
         <!-- Lista dinamica eventi -->
         <ul>
             <li *ngFor="let evento of eventi">
+		    <img [src]="getImageUrl(evento)" alt="{{ evento.titolo }}" >
                 {{ evento.titolo }} - {{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo | currency:'EUR' }}
                 <br>
                 {{ evento.luogo }}
-
                 <!-- Link al dettaglio evento -->
                 <a [routerLink]="['/eventi', evento.id]" class="btn-dettaglio">Vedi Dettagli</a>
             </li>
