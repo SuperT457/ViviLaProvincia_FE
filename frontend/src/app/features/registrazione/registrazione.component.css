@@ -80,3 +80,24 @@ form button:hover {
   color: #007bff;
   text-decoration: none;
 }
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 40px; /* spazio per l'icona a destra */
+  width: 100%;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+}
+
+

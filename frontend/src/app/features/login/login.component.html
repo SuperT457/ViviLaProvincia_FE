@@ -15,19 +15,26 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" >
       <label for="password">Password</label>
+     <div class="password-wrapper">
       <input
-        type="password"
-        id="password"
-        formControlName="password"
-        placeholder="Inserisci la tua password"
-      />
+         [type]="showPassword ? 'text' : 'password'"
+          id="password"
+          formControlName="password"
+          placeholder="Inserisci la tua password"
+        />
+      <span class="toggle-password" (click)="togglePassword()">
+       {{ showPassword ? '🔓' : '🔒' }}
+       </span>
+
+     </div> 
+      
       <div class="error" *ngIf="password.invalid && password.touched">
         La password è obbligatoria.
       </div>
       <div>
-       <p>Non hai un account? <a href="#" (click)="goToRegister($event)">Registrati</a></p>
+       <p class="login-link">Non hai un account? <a href="#" (click)="goToRegister($event)">Registrati</a></p>
       </div>
       
     </div>

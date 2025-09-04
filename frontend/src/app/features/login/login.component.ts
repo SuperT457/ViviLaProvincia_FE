@@ -21,6 +21,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   loggedUser: Utente | null = null
   loginError: string = '';
+  showPassword = false;
 
   constructor(private fb: FormBuilder, 
     private utenteService: UtenteService, 
@@ -28,6 +29,7 @@ export class LoginComponent {
     private sessionService: SessionService,
     private router: Router,
     private cdr: ChangeDetectorRef
+    
   ) {
     
     this.loginForm = this.fb.group({
@@ -35,6 +37,11 @@ export class LoginComponent {
       password: ['', [Validators.required]]
     });
   }
+  togglePassword(): void {
+  this.showPassword = !this.showPassword;
+}
+
+
 
   get password() {
     return this.loginForm.get('password')!;

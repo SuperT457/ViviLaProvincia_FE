@@ -17,12 +17,16 @@ import { ChangeDetectorRef } from '@angular/core';
 export class EventiComponent implements OnInit {
   eventi: Evento[] = [];
   loading: boolean = true;
+  
 
   constructor(
     private eventoService: EventoService,
     private cdr: ChangeDetectorRef
   ) {}
 
+
+
+  
   ngOnInit(): void {
     this.loadEventi();
   }
