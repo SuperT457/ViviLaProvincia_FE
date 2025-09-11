@@ -1,5 +1,5 @@
 <header>
-    <h1>Elenco Concerti</h1>
+    <h1>Elenco Eventi</h1>
 </header>
 
 <main>
@@ -12,12 +12,22 @@
         <!-- Lista dinamica eventi -->
         <ul>
             <li *ngFor="let evento of eventi">
-		    <img [src]="getImageUrl(evento)" alt="{{ evento.titolo }}" >
-                {{ evento.titolo }} - {{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo | currency:'EUR' }}
-                <br>
-                {{ evento.luogo }}
-                <!-- Link al dettaglio evento -->
+              <img [src]="getImageUrl(evento)" alt="{{ evento.titolo }}">
+              <div class="dettagli">
+                <h3>{{ evento.titolo }}</h3>
+                <p>{{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo > 0 ? (evento.costo | currency:'EUR') : 'Gratis'}}</p>
+                <p>{{ evento.luogo }}</p>
                 <a [routerLink]="['/eventi', evento.id]" class="btn-dettaglio">Vedi Dettagli</a>
+              </div>
+            </li>
+            <li *ngFor="let evento of eventi">
+              <img [src]="getImageUrl(evento)" alt="{{ evento.titolo }}">
+              <div class="dettagli">
+                <h3>{{ evento.titolo }}</h3>
+                <p>{{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo > 0 ? (evento.costo | currency:'EUR') : 'Gratis'}}</p>
+                <p>{{ evento.luogo }}</p>
+                <a [routerLink]="['/eventi', evento.id]" class="btn-dettaglio">Vedi Dettagli</a>
+              </div>
             </li>
         </ul>
     </section>

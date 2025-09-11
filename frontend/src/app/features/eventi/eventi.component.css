@@ -1,72 +1,140 @@
-/* styles.css */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-}
-
+/* --- Stile generale --- */
 header {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem;
+  text-align: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #2a2a72, #009ffd);
+  color: white;
 }
 
-h1 {
-    font-size: 2.5rem;
+header h1 {
+  margin: 0;
+  font-size: 2rem;
 }
 
 main {
-    padding: 20px;
-}
-
-#concerti {
-    max-width: 900px;
-    margin: 0 auto;
+  padding: 2rem;
+  max-width: 100%;
+  margin: auto;
+  overflow: hidden;
 }
 
 h2 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333;
 }
 
+/* --- Nastro orizzontale con animazione --- */
 ul {
-    list-style: none;
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  animation: scroll 30s linear infinite;
 }
 
+ul:hover {
+  animation-play-state: paused; /* fermo al passaggio mouse */
+}
+
+/* Animazione scorrimento */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* metà duplicata */
+}
+
+/* --- Nascondere scrollbars --- */
+ul::-webkit-scrollbar {
+  display: none;
+}
+ul {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* --- Singolo evento --- */
 li {
-    background-color: white;
-    margin-bottom: 15px;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 0 0 250px;
+  position: relative;
+  height: 300px; /* aumentata per non tagliare il bottone */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  background: #fff;
+  transition: transform 0.3s ease;
 }
 
-h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+li:hover {
+  transform: scale(1.05);
 }
 
-.band {
-    font-weight: bold;
-    color: #007BFF;
+/* --- Immagini evento --- */
+li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
+/* --- Overlay --- */
+li::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+li:hover::after {
+  opacity: 1;
+}
+
+/* --- Dettagli evento --- */
+li .dettagli {
+  position: absolute;
+  inset: 0;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  padding: 1rem;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+li:hover .dettagli {
+  opacity: 1;
+}
+
+/* --- Pulsante --- */
+.btn-dettaglio {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  background: #009ffd;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  z-index: 3;
+}
+
+.btn-dettaglio:hover {
+  background: #0077cc;
+}
+
+/* --- Footer --- */
 footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #333;
-    color: white;
-    margin-top: 30px;
-}
-
-footer p {
-    font-size: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+  padding: 1rem;
+  background: #f7f7f7;
+  color: #666;
+  font-size: 0.9rem;
 }
