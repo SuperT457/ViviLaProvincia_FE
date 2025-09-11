@@ -6,6 +6,8 @@ import { CurrencyPipe } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
+import { CategoriaService } from '../../services/categoria.service';
+import { Categoria } from '../../models/categoria.model';
 
 @Component({
   selector: 'app-eventi',
@@ -17,11 +19,12 @@ import { ChangeDetectorRef } from '@angular/core';
 export class EventiComponent implements OnInit {
   eventi: Evento[] = [];
   loading: boolean = true;
-  
+  categorie: Categoria[] = [];
 
   constructor(
     private eventoService: EventoService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private categoriaService: CategoriaService
   ) {}
 
 
@@ -29,6 +32,7 @@ export class EventiComponent implements OnInit {
   
   ngOnInit(): void {
     this.loadEventi();
+    this.loadCategorie();
   }
 
   loadEventi(): void{
@@ -45,6 +49,22 @@ export class EventiComponent implements OnInit {
       error: (err) => {
         console.error('Errore caricamento eventi', err);
         this.loading = false;
+      }
+    });
+  }
+
+  loadCategorie(): void{
+    this.categoriaService.getAllCategorie().subscribe({
+      next: (data) => {
+        this.categorie = data;
+        console.log("Ho trovato queste categorie: ");
+        for (let c of this.categorie) {
+          console.log(c);
+        }
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Errore caricamento categorie', err);
       }
     });
   }
