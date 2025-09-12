@@ -30,18 +30,16 @@ export class LoginComponent {
     private router: Router,
     private cdr: ChangeDetectorRef
     
-  ) {
-    
+  ) { 
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
   }
+  
   togglePassword(): void {
-  this.showPassword = !this.showPassword;
-}
-
-
+    this.showPassword = !this.showPassword;
+  }
 
   get password() {
     return this.loginForm.get('password')!;

@@ -13,6 +13,6 @@ export class UtenteService{
 	    return this.http.post<Utente>(`${this.baseUrl}/login`, {username,password});
     }
     register(username:string, password:string, email: string): Observable<Utente>{
-	    return this.http.post<Utente>(`${this.baseUrl}/login`, {username,password, email});
+	    return this.http.post<Utente>(`${this.baseUrl}/register`, {username,password, email});
     }
 }

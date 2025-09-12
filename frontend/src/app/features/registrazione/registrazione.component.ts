@@ -10,6 +10,7 @@ import { AppComponent } from '../../app.component';
 import { SessionService } from '../../services/session.service';
 import { Utente } from '../../models/user.model';
 import { ChangeDetectorRef } from '@angular/core';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-registrazione',
@@ -32,12 +33,17 @@ export class RegisterComponent {
     private router: Router,
     private cdr: ChangeDetectorRef
   ) {
-    
-    this.RegisterForm = this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      email: ['', [Validators.required]]
-    });
+  
+    this.RegisterForm = this.fb.group(
+      {
+        username: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required]],
+        confirmPassword: ['', [Validators.required]]
+      },
+      { validators: this.passwordMatchValidator() }
+    );
+  
   }
 
   get password() {
@@ -51,17 +57,27 @@ export class RegisterComponent {
     return this.RegisterForm.get('email')!;
   }
 
-  
-
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
+  
   togglePassword(field: string) {
     if (field === 'password') {
       this.showPassword = !this.showPassword;
     } else if (field === 'confirmPassword') {
       this.showConfirmPassword = !this.showConfirmPassword;
     }
+  }
+
+  passwordMatchValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const password = control.get('password');
+      const confirmPassword = control.get('confirmPassword');
+
+      return password && confirmPassword && password.value !== confirmPassword.value
+        ? { passwordMismatch: true }
+        : null;
+    };
   }
 
   goToRegister(event: Event) {
@@ -73,25 +89,24 @@ export class RegisterComponent {
     if (this.RegisterForm.valid) {
       const { username, password ,email} = this.RegisterForm.value;
       // Qui puoi gestire il login, chiamare un servizio, ecc.
-    console.log('Username:', username);
-    console.log('Password:', password);
-    console.log('Email:', email);
+      console.log('Username:', username);
+      console.log('Password:', password);
+      console.log('Email:', email);
       
-      
-      this.utenteService.login(username,password).subscribe({
+      this.utenteService.register(username,password,email).subscribe({
         next: (utente) => {
-          console.log('Registrazione corretta', utente);
+          console.log('Registrazione successful', utente);
           this.sessionService.setLoggedUser(utente);
           this.registerUser = this.sessionService.getLoggedUser();
           this.appComponent.updateUser();
           this.router.navigate(['/']);
         },
-        error: (err) => { 
-          console.error('Problemi con la registrazione',err);
-          this.registerError = 'Registro fallito. Controlla le credenziali.';
+        error: (err) => {
+          console.error('Registration failed', err);
+          this.registerError = 'Registrazione fallita. Riprova.';
           this.cdr.detectChanges(); // Forza il rilevamento delle modifiche
         }
-      })
+      });
     } else {
       this.RegisterForm.markAllAsTouched();
     }
