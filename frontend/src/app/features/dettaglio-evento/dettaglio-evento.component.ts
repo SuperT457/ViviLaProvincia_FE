@@ -48,7 +48,7 @@ export class DettaglioEventoComponent implements OnInit {
     alert('Funzionalità di acquisto biglietto non implementata.');
   }
 
-  getImageUrl(evento: Evento): string{
+    getImageUrl(evento: Evento): string{
     return `http://localhost:8080${evento.image_url}`;
   }
 }

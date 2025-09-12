@@ -20,6 +20,8 @@ export class EventiComponent implements OnInit {
   eventi: Evento[] = [];
   loading: boolean = true;
   categorie: Categoria[] = [];
+  selectedCategoriaId?: number = 1;
+  filteredEventi: Evento[] = [];
 
   constructor(
     private eventoService: EventoService,
@@ -58,12 +60,27 @@ export class EventiComponent implements OnInit {
         for (let c of this.categorie) {
           console.log(c);
         }
+        this.selectedCategoriaId = this.categorie[0].id;
         this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Errore caricamento categorie', err);
       }
     });
+  }
+
+  filterByCategoria(): void {
+    if (this.selectedCategoriaId === null) {
+      this.filteredEventi = this.eventi;
+    }else {
+      this.filteredEventi = this.eventi.filter(evento => evento.categoria.id === this.selectedCategoriaId);
+    }
+    this.cdr.detectChanges();
+  }
+
+  selectCategoria(categoriaId?: number): void {
+    this.selectedCategoriaId = categoriaId;
+    this.filterByCategoria();
   }
 
   getImageUrl(evento: Evento): string{

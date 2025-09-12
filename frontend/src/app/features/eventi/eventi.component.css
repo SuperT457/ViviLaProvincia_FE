@@ -1,64 +1,23 @@
-/* --- Stile generale --- */
-header {
-  text-align: center;
-  padding: 1rem;
-  background: linear-gradient(135deg, #2a2a72, #009ffd);
-  color: white;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 2rem;
-}
-
-main {
-  padding: 2rem;
-  max-width: 100%;
-  margin: auto;
-  overflow: hidden;
-}
-
-h2 {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  color: #333;
-}
-
-/* --- Nastro orizzontale con animazione --- */
-ul {
+/* --- Nastro eventi --- */
+.eventi-nastro {
   display: flex;
   gap: 1rem;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 2rem 0;
   width: 100%;
   animation: scroll 30s linear infinite;
 }
 
-ul:hover {
-  animation-play-state: paused; /* fermo al passaggio mouse */
-}
-
-/* Animazione scorrimento */
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* metà duplicata */
-}
-
-/* --- Nascondere scrollbars --- */
-ul::-webkit-scrollbar {
-  display: none;
-}
-ul {
-  -ms-overflow-style: none; /* IE/Edge */
-  scrollbar-width: none;     /* Firefox */
+.eventi-nastro:hover {
+  animation-play-state: paused;
 }
 
 /* --- Singolo evento --- */
-li {
+.eventi-nastro li {
   flex: 0 0 250px;
   position: relative;
-  height: 300px; /* aumentata per non tagliare il bottone */
+  height: 300px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
@@ -66,34 +25,31 @@ li {
   transition: transform 0.3s ease;
 }
 
-li:hover {
+.eventi-nastro li:hover {
   transform: scale(1.05);
 }
 
-/* --- Immagini evento --- */
-li img {
+.eventi-nastro li img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* --- Overlay --- */
-li::after {
+.eventi-nastro li::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.7); /* overlay più scuro */
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-li:hover::after {
+.eventi-nastro li:hover::after {
   opacity: 1;
 }
 
-/* --- Dettagli evento --- */
-li .dettagli {
+.eventi-nastro li .dettagli {
   position: absolute;
   inset: 0;
   color: white;
@@ -106,13 +62,14 @@ li .dettagli {
   padding: 1rem;
   text-align: center;
   transition: opacity 0.3s ease;
+  background: rgba(0,0,0,0.3); /* sfondo semitrasparente sotto testo */
+  border-radius: 12px;
 }
 
-li:hover .dettagli {
+.eventi-nastro li:hover .dettagli {
   opacity: 1;
 }
 
-/* --- Pulsante --- */
 .btn-dettaglio {
   display: inline-block;
   margin-top: 0.5rem;
@@ -129,12 +86,87 @@ li:hover .dettagli {
   background: #0077cc;
 }
 
-/* --- Footer --- */
-footer {
-  margin-top: 2rem;
-  text-align: center;
+/* --- Navbar categorie --- */
+.lista-categorie ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  justify-content: center;
+  background: #f2f2f2;
+  border-radius: 8px;
+}
+
+.lista-categorie ul li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+  border-radius: 6px;
+}
+
+.lista-categorie ul li:hover {
+  background: #009ffd;
+  color: white;
+}
+
+/* --- Scrollbar nascosta --- */
+.eventi-nastro::-webkit-scrollbar {
+  display: none;
+}
+.eventi-nastro {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;     
+}
+
+/* --- Animazione scorrimento --- */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.eventi-filtrati ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.eventi-filtrati li {
+  flex: 0 0 250px;
+  position: relative;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  background: #fff;
+  transition: transform 0.3s ease;
+}
+
+.eventi-filtrati li:hover {
+  transform: scale(1.03);
+}
+
+.eventi-filtrati li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.eventi-filtrati li .dettagli {
+  position: absolute;
+  inset: 0;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 1; /* sempre visibili senza hover */
   padding: 1rem;
-  background: #f7f7f7;
-  color: #666;
-  font-size: 0.9rem;
+  text-align: center;
+  background: rgba(0,0,0,0.5);
+  border-radius: 12px;
 }
