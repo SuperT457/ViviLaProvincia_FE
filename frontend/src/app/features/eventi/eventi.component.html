@@ -12,7 +12,7 @@
         <!-- Lista dinamica eventi -->
         <ul>
             <li *ngFor="let evento of eventi">
-              <img [src]="getImageUrl(evento)" alt="{{ evento.titolo }}">
+              <img [src]="getImageUrl(evento)" alt="{{ evento.image_url }}">
               <div class="dettagli">
                 <h3>{{ evento.titolo }}</h3>
                 <p>{{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo > 0 ? (evento.costo | currency:'EUR') : 'Gratis'}}</p>
@@ -21,7 +21,7 @@
               </div>
             </li>
             <li *ngFor="let evento of eventi">
-              <img [src]="getImageUrl(evento)" alt="{{ evento.titolo }}">
+              <img [src]="getImageUrl(evento)" alt="{{ evento.image_url }}">
               <div class="dettagli">
                 <h3>{{ evento.titolo }}</h3>
                 <p>{{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo > 0 ? (evento.costo | currency:'EUR') : 'Gratis'}}</p>
@@ -32,8 +32,3 @@
         </ul>
     </section>
 </main>
-
-<footer>
-    <p>&copy; 2025 Elenco Concerti. Tutti i diritti riservati.</p>
-</footer>
-

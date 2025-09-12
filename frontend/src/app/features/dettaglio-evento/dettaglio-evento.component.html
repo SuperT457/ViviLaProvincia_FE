@@ -2,12 +2,13 @@
 
 <div *ngIf="!loading && evento" class="evento-container">
   <div class="evento-card">
+    <img [src]="getImageUrl(evento)" alt="{{ evento.titolo }}">
     <h1>{{ evento.titolo }}</h1>
     <p><strong>Luogo:</strong> {{ evento.luogo }}</p>
     <p><strong>Data e Ora:</strong> {{ evento.dataora | date:'fullDate' }} - {{ evento.dataora | date:'shortTime' }}</p>
     <p><strong>Prezzo:</strong> {{ evento.costo | currency:'EUR' }}</p>
 
-    <div *ngIf="evento.costo < 20" class="sconto">🎉 Sconto speciale disponibile!</div>
+    <p class="descrizione">{{ evento.descrizione }}</p>
 
     <button class="btn-acquista" (click)="acquistaBiglietto()">Acquista Biglietto</button>
   </div>

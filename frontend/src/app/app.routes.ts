@@ -9,5 +9,5 @@ export const routes: Routes = [
     {path: 'eventi/:id', component: DettaglioEventoComponent }, //dettaglio evento
     {path: '', redirectTo: 'eventi', pathMatch: 'full'},
     {path: 'login', loadComponent: () => LoginComponent},
-    {path: 'register', loadComponent: () => RegisterComponent },
+    {path: 'register', loadComponent: () => RegisterComponent }
 ];

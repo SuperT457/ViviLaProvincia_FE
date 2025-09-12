@@ -27,9 +27,6 @@ export class EventiComponent implements OnInit {
     private categoriaService: CategoriaService
   ) {}
 
-
-
-  
   ngOnInit(): void {
     this.loadEventi();
     this.loadCategorie();

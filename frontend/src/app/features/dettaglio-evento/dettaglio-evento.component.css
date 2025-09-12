@@ -1,42 +1,105 @@
+/* --- Contenitore centrale --- */
 .evento-container {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 2rem;
+  background: #f7f7f7;
+  min-height: calc(100vh - 100px); /* lascia spazio a header/footer */
 }
 
+/* --- Card evento --- */
 .evento-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  padding: 30px;
-  max-width: 500px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  overflow: hidden;
+  max-width: 700px;
   width: 100%;
+  padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.3s ease;
 }
 
+.evento-card:hover {
+  transform: translateY(-5px);
+}
+
+/* --- Immagine --- */
+.evento-card img {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* --- Titolo evento --- */
+.evento-card h1 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+  color: #2a2a72;
+}
+
+/* --- Informazioni evento --- */
+.evento-card p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* --- Badge sconto --- */
 .sconto {
-  color: #d9534f;
+  display: inline-block;
+  background: #ffcc00;
+  color: #333;
   font-weight: bold;
-  margin: 15px 0;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  margin-top: 0.5rem;
+  animation: bounce 1.2s infinite alternate;
 }
 
+/* Leggero movimento per il badge */
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
+}
+
+/* --- Descrizione --- */
+.descrizione {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #555;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+/* --- Bottone acquista --- */
 .btn-acquista {
-  background-color: #007bff;
-  color: #fff;
+  background: #009ffd;
+  color: white;
   border: none;
-  padding: 12px 25px;
   border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s ease, transform 0.2s ease;
+  align-self: center;
+  margin-top: 1rem;
 }
 
 .btn-acquista:hover {
-  background-color: #0056b3;
+  background: #0077cc;
+  transform: translateY(-2px);
 }
 
+/* --- Loading --- */
 .loading {
   text-align: center;
-  margin-top: 50px;
   font-size: 1.2rem;
   color: #555;
+  padding: 2rem;
 }
