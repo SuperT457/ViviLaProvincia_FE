@@ -30,6 +30,7 @@ export class EventiComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.selectedCategoriaId);
     this.loadEventi();
     this.loadCategorie();
   }
@@ -42,6 +43,7 @@ export class EventiComponent implements OnInit {
         for (let e of this.eventi) {
           console.log(e);
         }
+        this.filterByCategoria();
         this.loading = false;
         this.cdr.detectChanges();
       },
@@ -60,7 +62,7 @@ export class EventiComponent implements OnInit {
         for (let c of this.categorie) {
           console.log(c);
         }
-        this.selectedCategoriaId = this.categorie[0].id;
+        //this.selectedCategoriaId = this.categorie[0].id;
         this.cdr.detectChanges();
       },
       error: (err) => {
