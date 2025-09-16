@@ -59,7 +59,8 @@ export class DettaglioEventoComponent implements OnInit {
         },
         error: (err) => {
           console.error('Errore acquisto biglietto:', err);
-          alert('Errore durante l\'acquisto del biglietto. Riprova.');
+          //alert('Errore durante l\'acquisto del biglietto. Riprova.');
+          alert(err.error.message);
         }
       });
     }

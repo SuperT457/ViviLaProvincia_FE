@@ -1,3 +1,24 @@
-<ul>
-    <li *ngFor="let prenotazione of Prenotazioni" > {{ prenotazione.id }}</li>
-</ul>
+<div class="prenotazioni-container">
+  <div class="card" *ngFor="let prenotazione of Prenotazioni">
+    <div class="card-content">
+      <!-- Immagine -->
+      <div class="card-image">
+        <img 
+        [src]="getImageUrl(prenotazione.evento.image_url)"
+        alt="Immagine evento"
+        routerLink="/eventi/{{ prenotazione.evento.id }}"
+        >
+      </div>
+
+      <!-- Info -->
+      <div class="card-body">
+        <h5 class="card-title">📌 Prenotazione #{{ prenotazione.id }}</h5>
+        <p class="card-text">
+          <strong>Evento:</strong> {{ prenotazione.evento.titolo }} <br>
+          <strong>Data e ora:</strong> {{ prenotazione.evento.dataora | date:'dd/MM/yyyy HH:mm' }} <br>
+          <strong>Luogo:</strong> {{ prenotazione.evento.luogo }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

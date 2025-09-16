@@ -4,6 +4,7 @@
   <!-- Barra di ricerca -->
   <div class="search-bar">
     <input type="text" placeholder="Cerca un evento..." [(ngModel)]="ricerca"/>
+    <span *ngIf="ricerca" class="clear-search" (click)="clearSearch()">✖️</span>
     <button type="button" (click)="searchEvent()">Vai!</button>
   </div>
     
@@ -56,6 +57,6 @@
       </li>
     </ul>
   </section>
-  <p *ngIf="filteredEventi.length === 0">Nessun evento per questa categoria.</p>
+  <p *ngIf="filteredEventi.length === 0">Nessun evento trovato</p>
     
 </section>

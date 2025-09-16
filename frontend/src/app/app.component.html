@@ -1,41 +1,32 @@
 <!DOCTYPE html>
 <html lang="it">
-  
-  <head>
-    <meta charset="UTF-8">
-  </head>
-  
-  <!-- Navbar in alto -->
-  <nav class="navbar">
-    <ul>
-      <li><a routerLink="/eventi">Eventi</a></li>
-      <li><a routerLink="/categorie">Categorie</a></li>
-      <li><a routerLink="/localita">Località</a></li>
-    
-      <!-- questo va a destra -->
-      <li class="auth" *ngIf="loggedUser; else loginLink">
-        <a [routerLink]="['/prenotazioni','loggedUser.id']">Le tue prenotazioni</a>
-        <a href="#" (click)="logout()">Logout</a>
-      </li>
-      <ng-template #loginLink>
-        <li class="auth">
-          <a routerLink="/login">Login</a>
-        </li>
-      </ng-template>
-    </ul>
-  </nav>  
-  
-  <!-- 🔍 -->
-  <!---->
 
-  <!-- Contenuto della pagina -->
-  <body>  
-    <main>
-      <router-outlet>
-        
-      </router-outlet>
-    </main>
-  
-  </body>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li><a routerLink="/eventi">Eventi</a></li>
+
+        <!-- link di login/logout a destra -->
+        <li class="auth" *ngIf="loggedUser; else loginLink">
+          <a [routerLink]="['/prenotazioni', loggedUser.id]">Le tue prenotazioni</a>
+          <a href="#" (click)="logout()">Logout</a>
+        </li>
+        <ng-template #loginLink>
+          <li class="auth">
+            <a routerLink="/login">Login</a>
+          </li>
+        </ng-template>
+      </ul>
+    </nav>
+
+  </header>
+
+  <!-- Contenuto principale -->
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</body>
 
 </html>

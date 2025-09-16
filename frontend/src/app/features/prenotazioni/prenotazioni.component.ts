@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Prenotazione } from '../../models/Prenotazione';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -44,5 +44,9 @@ export class PrenotazioniComponent{
         }
       });
     }
+  }
+
+  getImageUrl(image_url?: String): string{
+      return `http://localhost:8080${image_url}`;
   }
 }
