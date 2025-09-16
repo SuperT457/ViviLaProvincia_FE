@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 import { Utente } from '../../models/user.model';
 import { SessionService } from '../../services/session.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dettaglio-evento',
   templateUrl: './dettaglio-evento.component.html',
-  imports: [CommonModule],
+  imports: [RouterLink, CommonModule],
   styleUrls: ['./dettaglio-evento.component.css']
 })
 export class DettaglioEventoComponent implements OnInit {
@@ -51,7 +52,7 @@ export class DettaglioEventoComponent implements OnInit {
 
   acquistaBiglietto(): void {
     if (this.evento && this.loggedUser?.id) {
-      this.eventoService.acquistaBiglietto(this.evento.id, this.loggedUser.id).subscribe({
+      this.eventoService.acquistaBiglietto(this.loggedUser.id,this.evento.id).subscribe({
         next: (data) => {
           console.log('Biglietto acquistato:', data);
           alert('Biglietto acquistato con successo!');

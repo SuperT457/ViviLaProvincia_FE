@@ -7,13 +7,14 @@
   
   <!-- Navbar in alto -->
   <nav class="navbar">
-    <ul style="list-style: none; display: flex; gap: 20px; padding: 0; margin: 0; align-items: center;">
+    <ul>
       <li><a routerLink="/eventi">Eventi</a></li>
       <li><a routerLink="/categorie">Categorie</a></li>
       <li><a routerLink="/localita">Località</a></li>
     
       <!-- questo va a destra -->
-      <li style="margin-left: auto;" *ngIf="loggedUser; else loginLink">
+      <li class="auth" *ngIf="loggedUser; else loginLink">
+        <a [routerLink]="['/prenotazioni','loggedUser.id']">Le tue prenotazioni</a>
         <a href="#" (click)="logout()">Logout</a>
       </li>
       <ng-template #loginLink>
@@ -31,6 +32,7 @@
   </div>  
   
   <!-- 🔍 -->
+  <!---->
 
   <!-- Contenuto della pagina -->
   <body>  

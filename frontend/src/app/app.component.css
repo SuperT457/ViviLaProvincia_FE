@@ -7,6 +7,14 @@
   align-items: center;
 }
 
+.navbar ul {
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  width: 100%; /* <-- fondamentale per far funzionare margin-left:auto */
+}
+
 .navbar .auth {
   margin-left: auto; /* spinge login/logout a destra */
 }

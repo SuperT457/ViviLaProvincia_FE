@@ -10,6 +10,11 @@
 
     <p class="descrizione">{{ evento.descrizione }}</p>
 
-    <button class="btn-acquista" (click)="acquistaBiglietto()">Acquista Biglietto</button>
+    <button *ngIf="loggedUser; else loginLink" class="btn-acquista" (click)="acquistaBiglietto()">Acquista Biglietto</button>
+    
+    <ng-template #loginLink>
+      <a routerLink="/login" class="btn-login">Accedi per acquistare</a>
+    </ng-template>
+
   </div>
 </div>
