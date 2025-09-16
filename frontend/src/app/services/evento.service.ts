@@ -2,10 +2,12 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Evento } from "../models/evento.model";
+import { newPrenotazione } from "../models/Prenotazione";
 
 @Injectable({ providedIn: 'root' })
 export class EventoService {
   private baseUrl: string = 'http://localhost:8080/api/eventi';
+  private prenotazioneUrl: string = 'http://localhost:8080/api/prenotazioni';
 
   constructor(private http: HttpClient) {}
 
@@ -29,7 +31,11 @@ export class EventoService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  acquistaBiglietto(eventoId: number): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/${eventoId}/acquista`, {});
+  acquistaBiglietto(utenteId: number,eventoId: number): Observable<void> {
+    console.log(`Acquisto biglietto per utente ${utenteId} e evento ${eventoId}`);
+
+    const prenotazione: newPrenotazione = {utente_id: utenteId, evento_id: eventoId};
+    
+    return this.http.post<void>(`${this.prenotazioneUrl}`, prenotazione);
   }
 }

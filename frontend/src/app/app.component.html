@@ -1,27 +1,45 @@
 <!DOCTYPE html>
 <html lang="it">
-    <head>
-      <meta charset="UTF-8">
-    </head>
+  
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  
+  <!-- Navbar in alto -->
+  <nav class="navbar">
+    <ul style="list-style: none; display: flex; gap: 20px; padding: 0; margin: 0; align-items: center;">
+      <li><a routerLink="/eventi">Eventi</a></li>
+      <li><a routerLink="/categorie">Categorie</a></li>
+      <li><a routerLink="/localita">Località</a></li>
+    
+      <!-- questo va a destra -->
+      <li style="margin-left: auto;" *ngIf="loggedUser; else loginLink">
+        <a href="#" (click)="logout()">Logout</a>
+      </li>
+      <ng-template #loginLink>
+        <li class="auth">
+          <a routerLink="/login">Login</a>
+        </li>
+      </ng-template>
+    </ul>
+  </nav>
 
-    <!-- Navbar in alto -->
-    <nav *ngIf="loggedUser">
-      <ul style="list-style: none; display: flex; gap: 20px; padding: 0;">
-        <li><a href="/eventi">Eventi</a></li>
-        <li><a href="/categorie">Categorie</a></li>
-        <li><a href="/localita">località</a></li>
-        <li><a href="#" (click)="logout()">Logout</a></li>
-      </ul>
-    </nav>
+  <!-- Barra di ricerca -->
+  <div class="search-bar">
+    <input type="text" placeholder="Cerca un evento..." />
+    <button type="button">Vai!</button>
+  </div>  
+  
+  <!-- 🔍 -->
 
-      <!-- Contenuto della pagina -->
-    <body>  
-      <main>
-        <router-outlet>
-          
-        </router-outlet>
-      </main>
-
-    </body>
+  <!-- Contenuto della pagina -->
+  <body>  
+    <main>
+      <router-outlet>
+        
+      </router-outlet>
+    </main>
+  
+  </body>
 
 </html>

@@ -4,10 +4,11 @@ import { Utente } from './models/user.model';
 import { SessionService } from './services/session.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FormsModule, CommonModule],
+  imports: [RouterOutlet, RouterLink, FormsModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -22,14 +23,15 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.updateUser();
+    this.router.navigate(['/eventi']);
     console.log(this.loggedUser);
-    if(this.loggedUser){
-      this.router.navigate(['/eventi']);
-      console.log("Utente loggato");
-    }else{
-      this.router.navigate(['/login']);
-      console.log("utente NON LOGGATO");
-    }
+    //if(this.loggedUser){
+    //  this.router.navigate(['/eventi']);
+    //  console.log("Utente loggato");
+    //}else{
+    //  this.router.navigate(['/login']);
+    //  console.log("utente NON LOGGATO");
+    //}
   }
 
   updateUser(){

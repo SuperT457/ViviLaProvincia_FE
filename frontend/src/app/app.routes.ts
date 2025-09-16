@@ -5,9 +5,9 @@ import { DettaglioEventoComponent} from './features/dettaglio-evento/dettaglio-e
 import { RegisterComponent} from './features/registrazione/registrazione.component';
 
 export const routes: Routes = [
-    {path: 'eventi', loadComponent: () => EventiComponent}, //lista eventi
+    {path: 'eventi', component: EventiComponent}, //lista eventi
     {path: 'eventi/:id', component: DettaglioEventoComponent }, //dettaglio evento
     {path: '', redirectTo: 'eventi', pathMatch: 'full'},
-    {path: 'login', loadComponent: () => LoginComponent},
-    {path: 'register', loadComponent: () => RegisterComponent }
+    {path: 'login', component: LoginComponent },
+    {path: 'register', component: RegisterComponent }
 ];

@@ -6,6 +6,8 @@ import { Evento } from '../../models/evento.model';
 //import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
+import { Utente } from '../../models/user.model';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-dettaglio-evento',
@@ -16,15 +18,18 @@ import { ChangeDetectorRef } from '@angular/core';
 export class DettaglioEventoComponent implements OnInit {
   evento!: Evento;
   loading: boolean = true;
+  loggedUser: Utente | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private eventoService: EventoService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private sessionService: SessionService
   ) {}
 
   ngOnInit(): void {
     this.loadEvento(this.route.snapshot.params['id']);
+    this.loggedUser = this.sessionService.getLoggedUser();
   }
 
   loadEvento(id: number): void {
@@ -45,7 +50,18 @@ export class DettaglioEventoComponent implements OnInit {
   }
 
   acquistaBiglietto(): void {
-    alert('Funzionalità di acquisto biglietto non implementata.');
+    if (this.evento && this.loggedUser?.id) {
+      this.eventoService.acquistaBiglietto(this.evento.id, this.loggedUser.id).subscribe({
+        next: (data) => {
+          console.log('Biglietto acquistato:', data);
+          alert('Biglietto acquistato con successo!');
+        },
+        error: (err) => {
+          console.error('Errore acquisto biglietto:', err);
+          alert('Errore durante l\'acquisto del biglietto. Riprova.');
+        }
+      });
+    }
   }
 
     getImageUrl(evento: Evento): string{
