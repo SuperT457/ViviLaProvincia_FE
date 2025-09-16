@@ -1,54 +1,61 @@
 <section id="concerti">
-    <div *ngIf="eventi.length === 0">Caricamento eventi...</div>
-
-    <ul class="eventi-nastro">
-        <li *ngFor="let evento of eventi">
-          <img [src]="getImageUrl(evento)" alt="{{ evento.image_url }}">
-          <div class="dettagli">
-            <h3>{{ evento.titolo }}</h3>
-            <p>{{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo > 0 ? (evento.costo | currency:'EUR') : 'Gratis'}}</p>
-            <p>{{ evento.luogo }}</p>
-            <a [routerLink]="['/eventi', evento.id]" class="btn-dettaglio">Vedi Dettagli</a>
-          </div>
-        </li>
-
-        <li *ngFor="let evento of eventi">
-          <img [src]="getImageUrl(evento)" alt="{{ evento.image_url }}">
-          <div class="dettagli">
-            <h3 class="testo-dettaglio">{{ evento.titolo }}</h3>
-            <p class="testo-dettaglio">{{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo > 0 ? (evento.costo | currency:'EUR') : 'Gratis'}}</p>
-            <p class="testo-dettaglio">{{ evento.luogo }}</p>
-            <a [routerLink]="['/eventi', evento.id]" class="btn-dettaglio">Vedi Dettagli</a>
-          </div>
-        </li>
+  <div *ngIf="eventi.length === 0">Caricamento eventi...</div>
+    
+  <!-- Barra di ricerca -->
+  <div class="search-bar">
+    <input type="text" placeholder="Cerca un evento..." [(ngModel)]="ricerca"/>
+    <button type="button" (click)="searchEvent()">Vai!</button>
+  </div>
+    
+  <!-- Nastro orizzontale con eventi -->        
+  <ul class="eventi-nastro">
+      <li *ngFor="let evento of eventi">
+        <img [src]="getImageUrl(evento)" alt="{{ evento.image_url }}">
+        <div class="dettagli">
+          <h3>{{ evento.titolo }}</h3>
+          <p>{{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo > 0 ? (evento.costo | currency:'EUR') : 'Gratis'}}</p>
+          <p>{{ evento.luogo }}</p>
+          <a [routerLink]="['/eventi', evento.id]" class="btn-dettaglio">Vedi Dettagli</a>
+        </div>
+      </li>
+  
+      <li *ngFor="let evento of eventi">
+        <img [src]="getImageUrl(evento)" alt="{{ evento.image_url }}">
+        <div class="dettagli">
+          <h3 class="testo-dettaglio">{{ evento.titolo }}</h3>
+          <p class="testo-dettaglio">{{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo > 0 ? (evento.costo | currency:'EUR') : 'Gratis'}}</p>
+          <p class="testo-dettaglio">{{ evento.luogo }}</p>
+          <a [routerLink]="['/eventi', evento.id]" class="btn-dettaglio">Vedi Dettagli</a>
+        </div>
+      </li>
+  </ul>
+  
+  <!-- Navbar categorie -->
+  <nav class="lista-categorie">
+    <ul>
+      <li *ngFor="let categoria of categorie" 
+          [class.active]="categoria.id === selectedCategoriaId"
+          (click)="selectCategoria(categoria.id)">
+        {{ categoria.nome }}
+      </li>
     </ul>
-
-    <!-- Navbar categorie -->
-    <nav class="lista-categorie">
-      <ul>
-        <li *ngFor="let categoria of categorie" 
-            [class.active]="categoria.id === selectedCategoriaId"
-            (click)="selectCategoria(categoria.id)">
-          {{ categoria.nome }}
-        </li>
-      </ul>
-    </nav>
-
-    <!---->
-    <!-- Eventi filtrati -->
-    <section class="eventi-filtrati" *ngIf="filteredEventi.length > 0">
-      <ul>
-        <li *ngFor="let evento of filteredEventi">
-          <img [src]="getImageUrl(evento)" alt="{{ evento.image_url }}">
-          <div class="dettagli">
-            <h3>{{ evento.titolo }}</h3>
-            <p>{{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo > 0 ? (evento.costo | currency:'EUR') : 'Gratis'}}</p>
-            <p>{{ evento.luogo }}</p>
-            <a [routerLink]="['/eventi', evento.id]" class="btn-dettaglio">Vedi Dettagli</a>
-          </div>
-        </li>
-      </ul>
-    </section>
-    <p *ngIf="filteredEventi.length === 0">Nessun evento per questa categoria.</p>
-
+  </nav>
+  
+  <!---->
+  <!-- Eventi filtrati -->
+  <section class="eventi-filtrati" *ngIf="filteredEventi.length > 0">
+    <ul>
+      <li *ngFor="let evento of filteredEventi">
+        <img [src]="getImageUrl(evento)" alt="{{ evento.image_url }}">
+        <div class="dettagli">
+          <h3>{{ evento.titolo }}</h3>
+          <p>{{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo > 0 ? (evento.costo | currency:'EUR') : 'Gratis'}}</p>
+          <p>{{ evento.luogo }}</p>
+          <a [routerLink]="['/eventi', evento.id]" class="btn-dettaglio">Vedi Dettagli</a>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <p *ngIf="filteredEventi.length === 0">Nessun evento per questa categoria.</p>
+    
 </section>

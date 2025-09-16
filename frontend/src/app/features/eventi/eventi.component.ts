@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 import { CategoriaService } from '../../services/categoria.service';
 import { Categoria } from '../../models/categoria.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-eventi',
   standalone: true,
-  imports: [RouterLink, CurrencyPipe, DatePipe, CommonModule],
+  imports: [RouterLink, CurrencyPipe, DatePipe, CommonModule, FormsModule],
   templateUrl: './eventi.component.html',
   styleUrls: ['./eventi.component.css']
 })
@@ -22,6 +23,8 @@ export class EventiComponent implements OnInit {
   categorie: Categoria[] = [];
   selectedCategoriaId?: number = 1;
   filteredEventi: Evento[] = [];
+  stringSearch: boolean = false;
+  ricerca: string = '';
 
   constructor(
     private eventoService: EventoService,
@@ -87,5 +90,19 @@ export class EventiComponent implements OnInit {
 
   getImageUrl(evento: Evento): string{
     return `http://localhost:8080${evento.image_url}`;
+  }
+
+  searchEvent(): void {
+    this.stringSearch = true;
+
+    console.log("Sto cercando: " + this.ricerca);
+
+    const ricercaLower = this.ricerca.toLowerCase();
+    this.filteredEventi = this.eventi.filter(evento => 
+      evento.titolo.toLowerCase().includes(ricercaLower) ||
+      evento.descrizione.toLowerCase().includes(ricercaLower)
+    );
+    console.log("Eventi filtrati: ",this.filteredEventi);
+    this.cdr.detectChanges();
   }
 }
