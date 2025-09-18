@@ -31,6 +31,10 @@ export class EventoService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
+  getEventiPerOrganizzatore(organizzatoreId: number): Observable<Evento[]> {
+    return this.http.get<Evento[]>(`${this.baseUrl}/organizzatore/${organizzatoreId}`);
+  }
+
   acquistaBiglietto(utenteId: number,eventoId: number): Observable<void> {
     console.log(`Acquisto biglietto per utente ${utenteId} e evento ${eventoId}`);
 

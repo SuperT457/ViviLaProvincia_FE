@@ -16,7 +16,7 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class PrenotazioniComponent{
   Prenotazioni: Prenotazione[] = [];
-  loggedUser: Utente | null = null; // Da sostituire con l'ID dell'utente loggato
+  loggedUser: Utente | null = null; 
 
   constructor(
     private prenotazioneService: PrenotazioneService,

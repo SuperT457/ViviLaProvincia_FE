@@ -11,6 +11,9 @@
         <!-- link di login/logout a destra -->
         <li class="auth" *ngIf="loggedUser; else loginLink">
           <a [routerLink]="['/prenotazioni', loggedUser.id]">Le tue prenotazioni</a>
+          <span *ngIf="loggedUser?.ruolo === 'o'">
+            <a [routerLink]="['/eventi-organizzati',loggedUser.id]"> i tuoi eventi</a>
+          </span>
           <a href="#" (click)="logout()">Logout</a>
         </li>
         <ng-template #loginLink>
