@@ -12,4 +12,8 @@ export class PrenotazioneService{
     getPrenotazioniByUtenteId(utenteId: number): Observable<Prenotazione[]>{
         return this.http.get<Prenotazione[]>(`${this.prenotazioneUrl}/utente/${utenteId}`);
     }
+
+    cancellaPrenotazione(id: number): Observable<void>{
+        return this.http.delete<void>(`${this.prenotazioneUrl}/${id}`);
+    }
 }

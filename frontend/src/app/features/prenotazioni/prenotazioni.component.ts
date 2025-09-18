@@ -46,6 +46,21 @@ export class PrenotazioniComponent{
     }
   }
 
+  eliminaPrenotazione(prenotazioneId: number): void {
+    if(confirm('Sei sicuro di voler cancellare questa prenotazione?')) {
+      this.prenotazioneService.cancellaPrenotazione(prenotazioneId).subscribe({
+        next: () => {
+          console.log('Prenotazione cancellata con successo');
+          this.Prenotazioni = this.Prenotazioni.filter(p => p.id !== prenotazioneId);
+          this.cdr.detectChanges();
+        },
+        error: (err) => {
+          console.error('Errore durante la cancellazione della prenotazione:', err);
+        }
+      });
+    }
+  }
+
   getImageUrl(image_url?: String): string{
       return `http://localhost:8080${image_url}`;
   }

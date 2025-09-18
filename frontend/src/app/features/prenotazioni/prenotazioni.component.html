@@ -1,12 +1,12 @@
-<div class="prenotazioni-container">
+<div class="prenotazioni-container" *ngIf="Prenotazioni && Prenotazioni.length > 0; else noPrenotazioni">
   <div class="card" *ngFor="let prenotazione of Prenotazioni">
     <div class="card-content">
       <!-- Immagine -->
       <div class="card-image">
         <img 
-        [src]="getImageUrl(prenotazione.evento.image_url)"
-        alt="Immagine evento"
-        routerLink="/eventi/{{ prenotazione.evento.id }}"
+          [src]="getImageUrl(prenotazione.evento.image_url)"
+          alt="Immagine evento"
+          routerLink="/eventi/{{ prenotazione.evento.id }}"
         >
       </div>
 
@@ -18,7 +18,18 @@
           <strong>Data e ora:</strong> {{ prenotazione.evento.dataora | date:'dd/MM/yyyy HH:mm' }} <br>
           <strong>Luogo:</strong> {{ prenotazione.evento.luogo }}
         </p>
+
+        <!-- Pulsante elimina -->
+        <button class="delete-btn" (click)="eliminaPrenotazione(prenotazione.id)">
+          Cancella prenotazione
+        </button>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #noPrenotazioni>
+  <div class="no-prenotazioni">
+    <p>Non hai ancora effettuato prenotazioni.</p>
+  </div>
+</ng-template>

@@ -9,6 +9,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { Utente } from '../../models/user.model';
 import { SessionService } from '../../services/session.service';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dettaglio-evento',
@@ -25,7 +26,8 @@ export class DettaglioEventoComponent implements OnInit {
     private route: ActivatedRoute,
     private eventoService: EventoService,
     private cdr: ChangeDetectorRef,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +58,7 @@ export class DettaglioEventoComponent implements OnInit {
         next: (data) => {
           console.log('Biglietto acquistato:', data);
           alert('Biglietto acquistato con successo!');
+          this.router.navigate(['/prenotazioni',this.loggedUser?.id]);
         },
         error: (err) => {
           console.error('Errore acquisto biglietto:', err);
