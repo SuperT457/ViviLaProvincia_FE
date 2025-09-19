@@ -57,6 +57,9 @@ export class DettaglioEventoComponent implements OnInit {
       this.eventoService.acquistaBiglietto(this.loggedUser.id,this.evento.id).subscribe({
         next: (data) => {
           console.log('Biglietto acquistato:', data);
+          
+          if(this.loggedUser) { this.sessionService.aggiungiPunti(this.loggedUser); }
+
           alert('Biglietto acquistato con successo!');
           this.router.navigate(['/prenotazioni',this.loggedUser?.id]);
         },

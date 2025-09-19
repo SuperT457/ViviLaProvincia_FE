@@ -79,8 +79,8 @@
       <label for="categoria">Categoria</label>
       <select
         id="categoria"
-        name="categoriaId"
-        [(ngModel)]="nuovoEvento.categoriaId"
+        name="idCategoria"
+        [(ngModel)]="nuovoEvento.idCategoria"
         required
       >
         <option *ngFor="let cat of categorie" [value]="cat.id">

@@ -10,6 +10,7 @@
         <!-- link di login/logout a destra -->
         <li class="auth" *ngIf="loggedUser; else loginLink">
           <a [routerLink]="['/prenotazioni', loggedUser.id]">Le tue prenotazioni</a>
+          <a href=# >Punti {{ loggedUser.punti }}</a>
           <span *ngIf="loggedUser?.ruolo === 'o'">
             <a [routerLink]="['/eventi-organizzati']">i tuoi eventi</a>
           </span>

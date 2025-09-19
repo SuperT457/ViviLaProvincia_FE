@@ -21,7 +21,15 @@ import { FormsModule } from '@angular/forms';
 export class CreaEventoComponent{
     
     loggedUser: Utente | null = null;
-    nuovoEvento!: EventoCreate;
+    nuovoEvento: EventoCreate = {
+        idCategoria: 1,
+        costo : 0,
+        titolo: '',
+        n_posti: 0,
+        descrizione: '',
+        luogo: '',
+        dataora: new Date()
+    };
     categorie: Categoria[] = [];
 
     constructor(
@@ -52,4 +60,19 @@ export class CreaEventoComponent{
         });
     }
 
+    creaEvento(): void{
+        const organizzatoreId = this.sessionService.getLoggedUser()?.id;
+        console.log(this.nuovoEvento,organizzatoreId);
+        if(organizzatoreId){
+            this.eventoService.creaEvento(this.nuovoEvento,organizzatoreId).subscribe({
+                next: (evento) => {
+                    alert("Evento creato con successo!");
+                    this.router.navigate(['/eventi-organizzati']);
+                },
+                error: (err) => {
+                    alert("Errore durante la creazione dell'evento.\nRiprova più tardi")
+                }
+            })
+        }
+    }
 }

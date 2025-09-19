@@ -9,6 +9,8 @@ import { ChangeDetectorRef } from '@angular/core';
 import { CategoriaService } from '../../services/categoria.service';
 import { Categoria } from '../../models/categoria.model';
 import { FormsModule } from '@angular/forms';
+import { Utente } from '../../models/user.model';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-eventi',
@@ -26,14 +28,17 @@ export class EventiComponent implements OnInit {
   filteredEventi: Evento[] = [];
   stringSearch: boolean = false;
   ricerca: string = '';
+  loggedUser: Utente | null = null;
 
   constructor(
     private eventoService: EventoService,
     private cdr: ChangeDetectorRef,
-    private categoriaService: CategoriaService
+    private categoriaService: CategoriaService,
+    private sessionService: SessionService
   ) {}
 
   ngOnInit(): void {
+    this.loggedUser = this.sessionService.getLoggedUser();
     console.log(this.selectedCategoriaId);
     this.loadEventi();
     this.loadCategorie();

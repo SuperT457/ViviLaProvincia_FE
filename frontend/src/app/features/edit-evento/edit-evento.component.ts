@@ -102,7 +102,7 @@ export class EditEventoComponent{
                         dataora: new Date(data.dataora),
                         costo: data.costo,
                         n_posti: data.n_posti,
-                        categoriaId: data.categoria?.id || 1
+                        idCategoria: data.categoria?.id || 1
                     };
                     this.cdr.detectChanges();
                 },

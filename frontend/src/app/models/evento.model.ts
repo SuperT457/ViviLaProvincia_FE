@@ -21,5 +21,5 @@ export interface EventoCreate {
   dataora: Date;  
   costo: number;
   n_posti: number;
-  categoriaId: number;      
+  idCategoria: number;      
 }

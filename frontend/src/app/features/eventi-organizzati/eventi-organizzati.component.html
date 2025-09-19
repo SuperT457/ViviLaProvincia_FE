@@ -1,5 +1,7 @@
 <h3>I tuoi prossimi eventi</h3>
 
+<button class="btn-crea" routerLink="/crea-evento">Crea un nuovo evento</button> 
+
 <ul class="eventi-lista">
   <li *ngFor="let evento of eventiOrganizzatiFuturi" class="evento-card">
     <h4 class="evento-titolo" [routerLink]="['/edit-evento',evento.id]" >{{ evento.titolo }}</h4>
