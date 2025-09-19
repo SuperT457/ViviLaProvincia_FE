@@ -1,5 +1,5 @@
-<div class="prenotazioni-container" *ngIf="Prenotazioni && Prenotazioni.length > 0; else noPrenotazioni">
-  <div class="card" *ngFor="let prenotazione of Prenotazioni">
+<div class="prenotazioni-container" *ngIf="PrenotazioniFuture && PrenotazioniFuture.length > 0; else noPrenotazioni">
+  <div class="card" *ngFor="let prenotazione of PrenotazioniFuture">
     <div class="card-content">
       <!-- Immagine -->
       <div class="card-image">
@@ -23,6 +23,33 @@
         <button class="delete-btn" (click)="eliminaPrenotazione(prenotazione.id)">
           Cancella prenotazione
         </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="prenotazioni-container" *ngIf="PrenotazioniPassate && PrenotazioniPassate.length > 0">
+  <!-- PRENOTAZIONI PASSATE -->
+  Prenotazioni passate: 
+  <div class="card" *ngFor="let prenotazione of PrenotazioniPassate">
+    <div class="card-content">
+      <!-- Immagine -->
+      <div class="card-image">
+        <img 
+          [src]="getImageUrl(prenotazione.evento.image_url)"
+          alt="Immagine evento"
+          >
+      </div>
+
+      <!-- Info -->
+      <div class="card-body">
+        <h5 class="card-title">📌 Prenotazione #{{ prenotazione.id }}</h5>
+        <p class="card-text">
+          <strong>Evento:</strong> {{ prenotazione.evento.titolo }} <br>
+          <strong>Data e ora:</strong> {{ prenotazione.evento.dataora | date:'dd/MM/yyyy HH:mm' }} <br>
+          <strong>Luogo:</strong> {{ prenotazione.evento.luogo }}
+        </p>
+
       </div>
     </div>
   </div>

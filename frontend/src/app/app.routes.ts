@@ -5,6 +5,7 @@ import { DettaglioEventoComponent} from './features/dettaglio-evento/dettaglio-e
 import { RegisterComponent} from './features/registrazione/registrazione.component';
 import { PrenotazioniComponent } from './features/prenotazioni/prenotazioni.component';
 import { EventiOrganizzatiComponent } from './features/eventi-organizzati/eventi-organizzati.component';
+import { EditEventoComponent } from './features/edit-evento/edit-evento.component';
 
 export const routes: Routes = [
     {path: 'eventi', component: EventiComponent}, //lista eventi
@@ -13,5 +14,6 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent },
     {path: 'register', component: RegisterComponent },
     {path: 'prenotazioni/:userId', component: PrenotazioniComponent },
-    {path: 'eventi-organizzati/:organizzatoreId', component: EventiOrganizzatiComponent }
+    {path: 'eventi-organizzati', component: EventiOrganizzatiComponent },
+    {path: 'edit-evento/:id', component: EditEventoComponent}
 ];

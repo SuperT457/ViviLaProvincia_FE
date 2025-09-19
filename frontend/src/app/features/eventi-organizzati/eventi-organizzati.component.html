@@ -1,5 +1,15 @@
-<ul>
-    <li *ngFor="let evento of eventiOrganizzati">
-        {{ evento | json }}        
-    </li>
+<ul class="eventi-lista">
+  <li *ngFor="let evento of eventiOrganizzati" class="evento-card">
+    <h3 class="evento-titolo" [routerLink]="['/edit-evento',evento.id]" >{{ evento.titolo }}</h3>
+    <p class="evento-descrizione">{{ evento.descrizione }}</p>
+    <div class="evento-dettagli">
+      <span class="evento-data">
+        📅 {{ evento.dataora | date:'dd/MM/yyyy' }}
+      </span>
+      <br>
+      <span class="evento-costo">
+        💰 {{ evento.costo | currency:'EUR' }}
+      </span>
+    </div>
+  </li>
 </ul>

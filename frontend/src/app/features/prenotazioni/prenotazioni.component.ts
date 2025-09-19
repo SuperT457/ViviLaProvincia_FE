@@ -15,7 +15,8 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./prenotazioni.component.css']
 })
 export class PrenotazioniComponent{
-  Prenotazioni: Prenotazione[] = [];
+  PrenotazioniFuture: Prenotazione[] = [];
+  PrenotazioniPassate: Prenotazione[] = [];
   loggedUser: Utente | null = null; 
 
   constructor(
@@ -36,7 +37,8 @@ export class PrenotazioniComponent{
       this.prenotazioneService.getPrenotazioniByUtenteId(this.loggedUser.id).subscribe({
         next: (data) => {
           console.log('Prenotazioni caricate:', data);
-          this.Prenotazioni = data;
+          this.PrenotazioniFuture = data.filter(p => new Date(p.evento.dataora) >= new Date());
+          this.PrenotazioniPassate = data.filter(p => new Date(p.evento.dataora) < new Date());
           this.cdr.detectChanges();
         },
         error: (err) => {
@@ -51,7 +53,7 @@ export class PrenotazioniComponent{
       this.prenotazioneService.cancellaPrenotazione(prenotazioneId).subscribe({
         next: () => {
           console.log('Prenotazione cancellata con successo');
-          this.Prenotazioni = this.Prenotazioni.filter(p => p.id !== prenotazioneId);
+          this.PrenotazioniFuture = this.PrenotazioniFuture.filter(p => p.id !== prenotazioneId);
           this.cdr.detectChanges();
         },
         error: (err) => {

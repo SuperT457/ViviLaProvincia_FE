@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Evento } from "../models/evento.model";
+import { Evento, EventoCreate } from "../models/evento.model";
 import { newPrenotazione } from "../models/Prenotazione";
 
 @Injectable({ providedIn: 'root' })
@@ -16,6 +16,7 @@ export class EventoService {
   }
 
   getEventoById(id: number): Observable<Evento> {
+    
     return this.http.get<Evento>(`${this.baseUrl}/${id}`);
   }
 
@@ -23,7 +24,7 @@ export class EventoService {
     return this.http.post<Evento>(this.baseUrl, evento);
   }
 
-  aggiornaEvento(id: number, evento: Evento): Observable<Evento> {
+  aggiornaEvento(id: number, evento: EventoCreate): Observable<Evento> {
     return this.http.put<Evento>(`${this.baseUrl}/${id}`, evento);
   }
 

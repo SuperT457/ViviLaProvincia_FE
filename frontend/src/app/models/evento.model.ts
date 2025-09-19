@@ -13,3 +13,13 @@ export interface Evento {
   categoria: Categoria;      // idem, puoi sostituire con model Categoria
   image_url?: String;
 }
+
+export interface EventoCreate {
+  titolo: string;
+  descrizione: string;
+  luogo: string;
+  dataora: Date;  
+  costo: number;
+  n_posti: number;
+  categoriaId: number;      
+}
