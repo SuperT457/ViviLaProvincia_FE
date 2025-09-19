@@ -1,16 +1,16 @@
 <section id="concerti">
-  <div *ngIf="eventi.length === 0">Caricamento eventi...</div>
-    
+  <div *ngIf="eventiFuturi.length === 0">Caricamento eventi...</div>
+   
   <!-- Barra di ricerca -->
   <div class="search-bar">
     <input type="text" placeholder="Cerca un evento..." [(ngModel)]="ricerca"/>
-    <span *ngIf="ricerca" class="clear-search" (click)="clearSearch()">✖️</span>
-    <button type="button" (click)="searchEvent()">Vai!</button>
+    <div *ngIf="ricerca" class="clear-search" (click)="clearSearch()">✖️</div>
+    <button type="button" class="btn-search" (click)="searchEvent()">Vai!</button>
   </div>
-    
+   
   <!-- Nastro orizzontale con eventi -->        
   <ul class="eventi-nastro">
-      <li *ngFor="let evento of eventi">
+      <li *ngFor="let evento of eventiFuturi">
         <img [src]="getImageUrl(evento)" alt="{{ evento.image_url }}">
         <div class="dettagli">
           <h3>{{ evento.titolo }}</h3>
@@ -19,30 +19,29 @@
           <a [routerLink]="['/eventi', evento.id]" class="btn-dettaglio">Vedi Dettagli</a>
         </div>
       </li>
-  
-      <li *ngFor="let evento of eventi">
+
+      <li *ngFor="let evento of eventiFuturi">
         <img [src]="getImageUrl(evento)" alt="{{ evento.image_url }}">
         <div class="dettagli">
-          <h3 class="testo-dettaglio">{{ evento.titolo }}</h3>
-          <p class="testo-dettaglio">{{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo > 0 ? (evento.costo | currency:'EUR') : 'Gratis'}}</p>
-          <p class="testo-dettaglio">{{ evento.luogo }}</p>
+          <h3>{{ evento.titolo }}</h3>
+          <p>{{ evento.dataora | date:'dd/MM/yyyy' }} - {{ evento.costo > 0 ? (evento.costo | currency:'EUR') : 'Gratis'}}</p>
+          <p>{{ evento.luogo }}</p>
           <a [routerLink]="['/eventi', evento.id]" class="btn-dettaglio">Vedi Dettagli</a>
         </div>
       </li>
   </ul>
-  
+ 
   <!-- Navbar categorie -->
   <nav class="lista-categorie">
     <ul>
-      <li *ngFor="let categoria of categorie" 
+      <li *ngFor="let categoria of categorie"
           [class.active]="categoria.id === selectedCategoriaId"
           (click)="selectCategoria(categoria.id)">
         {{ categoria.nome }}
       </li>
     </ul>
   </nav>
-  
-  <!---->
+ 
   <!-- Eventi filtrati -->
   <section class="eventi-filtrati" *ngIf="filteredEventi.length > 0">
     <ul>
@@ -58,5 +57,4 @@
     </ul>
   </section>
   <p *ngIf="filteredEventi.length === 0">Nessun evento trovato</p>
-    
 </section>

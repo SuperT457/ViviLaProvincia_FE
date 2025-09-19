@@ -92,9 +92,10 @@
     <!-- Pulsanti -->
     <div class="form-actions">
       <button type="submit" [disabled]="eventoForm.invalid">Salva modifiche</button>
-      <button type="button" routerLink="/eventi-organizzati">
-        Annulla
-      </button>
+      
+      <button type="button" routerLink="/eventi-organizzati"> Annulla </button>
+
+      <button type="button" (click)="cancellaEvento()" class="delete-button"> Elimina Evento </button>
     </div>
   </form>
 </div>

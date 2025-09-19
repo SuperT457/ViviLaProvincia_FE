@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <body>
   <!-- Navbar -->
-  <header>
+  <header *ngIf="router.url !== '/login' && router.url !== '/register'">
     <nav class="navbar">
       <ul>
         <li><a routerLink="/eventi">Eventi</a></li>
@@ -12,7 +11,7 @@
         <li class="auth" *ngIf="loggedUser; else loginLink">
           <a [routerLink]="['/prenotazioni', loggedUser.id]">Le tue prenotazioni</a>
           <span *ngIf="loggedUser?.ruolo === 'o'">
-            <a [routerLink]="['/eventi-organizzati']"> i tuoi eventi</a>
+            <a [routerLink]="['/eventi-organizzati']">i tuoi eventi</a>
           </span>
           <a href="#" (click)="logout()">Logout</a>
         </li>
@@ -23,7 +22,6 @@
         </ng-template>
       </ul>
     </nav>
-
   </header>
 
   <!-- Contenuto principale -->
@@ -31,5 +29,4 @@
     <router-outlet></router-outlet>
   </main>
 </body>
-
 </html>

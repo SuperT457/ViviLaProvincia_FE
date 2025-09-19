@@ -17,7 +17,8 @@ import { Evento } from '../../models/evento.model';
 })
 export class EventiOrganizzatiComponent{
     loggedUser: Utente | null = null
-    eventiOrganizzati: Evento[] = [];
+    eventiOrganizzatiPassati: Evento[] = [];
+    eventiOrganizzatiFuturi: Evento[] = [];
 
     constructor(
         private sessionService: SessionService,
@@ -37,7 +38,8 @@ export class EventiOrganizzatiComponent{
             this.eventoService.getEventiPerOrganizzatore(this.loggedUser.id).subscribe({
                 next: (eventi) => {
                     console.log('Eventi organizzati caricati:', eventi);
-                    this.eventiOrganizzati = eventi;
+                    this.eventiOrganizzatiFuturi = eventi.filter(e => new Date(e.dataora) >= new Date());
+                    this.eventiOrganizzatiPassati = eventi.filter(e => new Date(e.dataora) < new Date());
                     this.cdr.detectChanges(); // Forza il rilevamento delle modifiche
                 },
                 error: (err) => {

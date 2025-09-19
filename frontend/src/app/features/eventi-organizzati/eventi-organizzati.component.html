@@ -1,6 +1,8 @@
+<h3>I tuoi prossimi eventi</h3>
+
 <ul class="eventi-lista">
-  <li *ngFor="let evento of eventiOrganizzati" class="evento-card">
-    <h3 class="evento-titolo" [routerLink]="['/edit-evento',evento.id]" >{{ evento.titolo }}</h3>
+  <li *ngFor="let evento of eventiOrganizzatiFuturi" class="evento-card">
+    <h4 class="evento-titolo" [routerLink]="['/edit-evento',evento.id]" >{{ evento.titolo }}</h4>
     <p class="evento-descrizione">{{ evento.descrizione }}</p>
     <div class="evento-dettagli">
       <span class="evento-data">

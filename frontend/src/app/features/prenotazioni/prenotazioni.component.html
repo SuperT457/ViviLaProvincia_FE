@@ -1,4 +1,7 @@
 <div class="prenotazioni-container" *ngIf="PrenotazioniFuture && PrenotazioniFuture.length > 0; else noPrenotazioni">
+  
+  <h3>Le tue prenotazioni</h3>
+  
   <div class="card" *ngFor="let prenotazione of PrenotazioniFuture">
     <div class="card-content">
       <!-- Immagine -->

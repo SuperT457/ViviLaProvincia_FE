@@ -18,7 +18,8 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./eventi.component.css']
 })
 export class EventiComponent implements OnInit {
-  eventi: Evento[] = [];
+  eventiPassati: Evento[] = [];
+  eventiFuturi: Evento[] = [];
   loading: boolean = true;
   categorie: Categoria[] = [];
   selectedCategoriaId?: number = 1;
@@ -41,11 +42,10 @@ export class EventiComponent implements OnInit {
   loadEventi(): void{
     this.eventoService.getEventi().subscribe({
       next: (data) => {
-        this.eventi = data;
+        this.eventiFuturi = data.filter(evento => new Date(evento.dataora) >= new Date());
+        this.eventiPassati = data.filter(evento => new Date(evento.dataora) < new Date());
+        console.log("Ho trovato questi eventi futuri: ");
         console.log("Ho trovato questi eventi: ");
-        for (let e of this.eventi) {
-          console.log(e);
-        }
         this.filterByCategoria();
         this.loading = false;
         this.cdr.detectChanges();
@@ -76,9 +76,9 @@ export class EventiComponent implements OnInit {
 
   filterByCategoria(): void {
     if (this.selectedCategoriaId === null) {
-      this.filteredEventi = this.eventi;
+      this.filteredEventi = this.eventiFuturi;
     }else {
-      this.filteredEventi = this.eventi.filter(evento => evento.categoria.id === this.selectedCategoriaId);
+      this.filteredEventi = this.eventiFuturi.filter(evento => evento.categoria.id === this.selectedCategoriaId);
     }
     this.cdr.detectChanges();
   }
@@ -105,7 +105,7 @@ export class EventiComponent implements OnInit {
     console.log("Sto cercando: " + this.ricerca);
 
     const ricercaLower = this.ricerca.toLowerCase();
-    this.filteredEventi = this.eventi.filter(evento => 
+    this.filteredEventi = this.eventiFuturi.filter(evento => 
       evento.titolo.toLowerCase().includes(ricercaLower) ||
       evento.descrizione.toLowerCase().includes(ricercaLower)
     );

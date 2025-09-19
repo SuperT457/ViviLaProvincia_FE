@@ -55,6 +55,26 @@ export class EditEventoComponent{
         });
     }
 
+    cancellaEvento(): void {
+        console.log("Cancellazione evento iniziata");
+        if(this.eventoId){
+            this.eventoService.eliminaEvento(this.eventoId).subscribe({
+                next: (data) => {
+                    console.log('Evento eliminato con successo! Info:', data);
+                    alert("Evento eliminato con successo!");
+                    this.router.navigate(['/eventi-organizzati']);
+                },
+                error: (err) => {
+                    console.error('Errore eliminazione evento:', err);
+                    alert("Errore durante l'eliminazione dell'evento. Riprova.");
+                }
+            })
+        }else{
+            alert("ID evento non valido.");
+            this.router.navigate(['/eventi-organizzati']);
+        }
+    }
+
     loadEvento(): void{
         this.loggedUser = this.sessionService.getLoggedUser();
         if(!this.loggedUser){

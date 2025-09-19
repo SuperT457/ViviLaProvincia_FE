@@ -1,3 +1,12 @@
+h3 {
+    color: #2E7D32;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding-left: 1rem;
+    border-left: 4px solid #2E7D32;
+}
+
 .eventi-lista {
   list-style: none;
   padding: 0;
