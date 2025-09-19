@@ -7,7 +7,7 @@
     <p><strong>Luogo:</strong> {{ evento.luogo }}</p>
     <p><strong>Data e Ora:</strong> {{ evento.dataora | date:'fullDate' }} - {{ evento.dataora | date:'shortTime' }}</p>
     <p><strong>Prezzo:</strong> {{ evento.costo | currency:'EUR' }}</p>
-
+    <p><strong>Posti: </strong> {{ evento.n_posti }} </p>
     <p class="descrizione">{{ evento.descrizione }}</p>
 
     <button *ngIf="loggedUser; else loginLink" class="btn-acquista" (click)="acquistaBiglietto()">Acquista Biglietto</button>

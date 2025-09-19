@@ -89,6 +89,30 @@
       </select>
     </div>
 
+
+  <!-- Strumenti musicali -->  
+  <label>
+    <input type="checkbox" name="strumenti" [(ngModel)]="showform">
+      Hai bisogno di strumenti musicali?
+  </label>
+  
+  <h4 *ngIf="showform" >Richiesta Strumenti Musicali - servizio offerto da Code-Commanders</h4>
+	
+  <form *ngIf="showform" #strumentiForm="ngForm">
+
+    <div *ngFor="let strumento of strumenti; let i = index" class="form-group">
+      <label>{{ strumento.nome }}</label>
+      <input
+        type="number"
+        name="quantita{{i}}"
+        [(ngModel)]="strumento.quantita"
+        min="0"
+        placeholder="0"
+      />
+    </div>
+
+  </form>
+
     <!-- Pulsanti -->
     <div class="form-actions">
       <button type="submit" [disabled]="eventoForm.invalid">Crea</button>
@@ -96,4 +120,5 @@
       <button type="button" routerLink="/eventi-organizzati"> Annulla </button>
     </div>
   </form>
+
 </div>

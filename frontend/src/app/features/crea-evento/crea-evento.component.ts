@@ -31,6 +31,15 @@ export class CreaEventoComponent{
         dataora: new Date()
     };
     categorie: Categoria[] = [];
+    showform: boolean = false;
+
+      strumenti = [
+        { nome: 'Chitarra', quantita: 0 },
+        { nome: 'Batteria', quantita: 0 },
+        { nome: 'Pianoforte', quantita: 0 },
+        { nome: 'Violino', quantita: 0 },
+        { nome: 'Basso', quantita: 0}
+    ];
 
     constructor(
         private sessionService: SessionService,
