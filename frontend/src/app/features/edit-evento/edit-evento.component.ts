@@ -25,6 +25,7 @@ export class EditEventoComponent{
     loggedUser: Utente | null = null;
     nuovoEvento!: EventoCreate;
     categorie: Categoria[] = [];
+    selectedFile: File | null = null;
 
     constructor(
         private sessionService: SessionService,
@@ -53,6 +54,28 @@ export class EditEventoComponent{
                 console.error('Errore caricamento categorie:', err);
             }
         });
+    }
+
+    onFileSelected(event: any){
+        this.selectedFile = event.target.files[0];
+    }
+
+    upload(): void{
+        if(this.selectedFile === null || this.evento === null) { return; }
+        
+        const formData = new FormData();
+        formData.append('file',this.selectedFile);
+        this.eventoService.uploadImage(formData).subscribe({
+            next: (data) => {
+                console.log("Immagine salvata in ",data);
+                if(this.nuovoEvento) this.nuovoEvento.image_url = String(data);
+                this.inviaEvento();
+            },
+            error: (err) => {
+                console.error("Errore upload: ", err.error);
+            }
+        })
+
     }
 
     cancellaEvento(): void {
@@ -117,6 +140,12 @@ export class EditEventoComponent{
     }
 
     modificaEvento(): void{
+        this.upload();
+    }
+
+    inviaEvento(): void{
+	    console.log("Nuovo EVENTO STRINGIFY: ",JSON.stringify(this.nuovoEvento));
+        console.log("evento NON stirngify: ", this.nuovoEvento);
         if(this.eventoId){
             this.eventoService.aggiornaEvento(this.eventoId,this.nuovoEvento).subscribe({
                 next: (data) => {

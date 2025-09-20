@@ -36,6 +36,10 @@ export class EventoService {
     return this.http.get<Evento[]>(`${this.baseUrl}/organizzatore/${organizzatoreId}`);
   }
 
+  uploadImage(formData: FormData): Observable<String>{
+    return this.http.post<String>('http://localhost:8080/api/eventi/upload-img', formData, {responseType: 'text' as 'json'} );
+  }
+
   acquistaBiglietto(utenteId: number,eventoId: number): Observable<void> {
     console.log(`Acquisto biglietto per utente ${utenteId} e evento ${eventoId}`);
 

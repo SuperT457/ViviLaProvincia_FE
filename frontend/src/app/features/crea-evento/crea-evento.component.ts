@@ -32,6 +32,7 @@ export class CreaEventoComponent{
     };
     categorie: Categoria[] = [];
     showform: boolean = false;
+    selectedFile: File | null = null;
 
       strumenti = [
         { nome: 'Chitarra', quantita: 0 },
@@ -72,6 +73,7 @@ export class CreaEventoComponent{
     creaEvento(): void{
         const organizzatoreId = this.sessionService.getLoggedUser()?.id;
         console.log(this.nuovoEvento,organizzatoreId);
+        console.log(JSON.stringify(this.nuovoEvento))
         if(organizzatoreId){
             this.eventoService.creaEvento(this.nuovoEvento,organizzatoreId).subscribe({
                 next: (evento) => {
@@ -84,4 +86,31 @@ export class CreaEventoComponent{
             })
         }
     }
+
+    generaEvento(){
+        this.upload();
+    }
+
+    onFileSelected(event: any){
+        this.selectedFile = event.target.files[0];
+    }
+
+    upload(): void{
+        if(this.selectedFile === null || this.nuovoEvento === null) { return; }
+        
+        const formData = new FormData();
+        formData.append('file',this.selectedFile);
+        this.eventoService.uploadImage(formData).subscribe({
+            next: (data) => {
+                console.log("Immagine salvata in ",data);
+                if(this.nuovoEvento) this.nuovoEvento.image_url = String(data);
+                this.creaEvento();
+            },
+            error: (err) => {
+                console.error("Errore upload: ", err.error);
+            }
+        })
+    }
+
+
 }

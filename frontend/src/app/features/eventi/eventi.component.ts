@@ -93,9 +93,12 @@ export class EventiComponent implements OnInit {
     this.filterByCategoria();
   }
 
-  getImageUrl(evento: Evento): string{
-    return `http://localhost:8080${evento.image_url}`;
-  }
+    getImageUrl(evento: Evento): string{
+      const path=`http://localhost:8080/api/eventi/images/${evento.image_url}`;
+      console.log(evento.image_url);
+      console.log(path);
+      return path;
+    }
 
   clearSearch(): void {
     this.stringSearch = false;

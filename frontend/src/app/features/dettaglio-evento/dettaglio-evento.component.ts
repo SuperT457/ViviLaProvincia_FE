@@ -73,6 +73,7 @@ export class DettaglioEventoComponent implements OnInit {
   }
 
     getImageUrl(evento: Evento): string{
-    return `http://localhost:8080${evento.image_url}`;
+    console.log("richiesta immagine ", evento.image_url);
+    return `http://localhost:8080/api/eventi/images/${evento.image_url}`;
   }
 }

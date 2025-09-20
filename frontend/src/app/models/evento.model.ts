@@ -21,5 +21,6 @@ export interface EventoCreate {
   dataora: Date;  
   costo: number;
   n_posti: number;
-  idCategoria: number;      
+  idCategoria: number;  
+  image_url?: String    
 }
