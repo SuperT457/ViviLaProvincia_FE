@@ -64,6 +64,6 @@ export class PrenotazioniComponent{
   }
 
   getImageUrl(image_url?: String): string{
-      return `http://localhost:8080${image_url}`;
+      return `http://localhost:8080/api/eventi/images/${image_url}`;
   }
 }

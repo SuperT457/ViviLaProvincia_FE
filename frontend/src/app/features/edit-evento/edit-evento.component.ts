@@ -140,7 +140,12 @@ export class EditEventoComponent{
     }
 
     modificaEvento(): void{
-        this.upload();
+        if(this.selectedFile)
+            this.upload();
+        else{
+            this.nuovoEvento.image_url = this.evento?.image_url;
+            this.inviaEvento();
+        }
     }
 
     inviaEvento(): void{
