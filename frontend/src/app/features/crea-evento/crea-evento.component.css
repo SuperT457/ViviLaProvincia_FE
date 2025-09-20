@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 /* Contenitore principale */
 .edit-evento-container {
     max-width: 800px;
@@ -20,6 +26,7 @@
 
 /* Gruppi del form */
 .form-group {
+    margin-right: auto;
     margin-bottom: 1.5rem;
 }
 
